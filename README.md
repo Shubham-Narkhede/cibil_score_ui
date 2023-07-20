@@ -1,6 +1,6 @@
 # cibil_score_ui
 
-A new Flutter project.
+![Image](https://github.com/Shubham-Narkhede/cibil_score_ui/blob/main/Screenshot_1689849755.png)
 
 ## Getting Started
 
