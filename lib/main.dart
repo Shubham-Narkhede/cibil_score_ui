@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   late Animation<Color?> colorTween;
 
-  List<int> list = [1, 2, 3, 4];
+  List<int> list = [200, 300, 500, 400, 800, 1000];
 
   @override
   void initState() {
@@ -80,12 +80,24 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         title: Text(widget.title),
       ),
       body: Container(
+        margin: const EdgeInsets.only(left: 20, right: 20),
         width: MediaQuery.of(context).size.width,
         child: SingleChildScrollView(
           child: Column(
             children: [
               const SizedBox(
                 height: 50,
+              ),
+              const Text(
+                "NOTE: You can add data in text field as well so you can build meter on the basis of textfield value",
+                style: TextStyle(fontSize: 20),
+              ),
+              const Text(
+                "\nElse you can just click on the centered circle it will generate random meter",
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               Container(
                 margin: const EdgeInsets.only(left: 30, right: 30, bottom: 10),
@@ -106,10 +118,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
                       startAnimation();
                     } else {}
+
+                    FocusScope.of(context).unfocus();
                   },
                   child: const Text("Build Meter")),
               const SizedBox(
-                height: 100,
+                height: 70,
               ),
               Stack(
                 alignment: Alignment.center,
@@ -191,12 +205,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   ),
                   InkWell(
                       onTap: () {
-                        startAnimation();
-
                         int element = list[math.Random().nextInt(list.length)];
-                        Future.delayed(Duration(seconds: element), () {
-                          controller.stop();
+
+                        setState(() {
+                          meterValue = double.parse(element.toString());
                         });
+
+                        startAnimation();
                       },
                       child: Container(
                         width: 90,
