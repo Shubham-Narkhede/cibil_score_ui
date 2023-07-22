@@ -3,9 +3,9 @@ import 'dart:math' as math;
 import 'package:vector_math/vector_math.dart' as vmath;
 
 class CustomPainterAnalogMeter extends CustomPainter {
-  final double value;
+  final double value, meterValue;
 
-  CustomPainterAnalogMeter({required this.value});
+  CustomPainterAnalogMeter({required this.value, required this.meterValue});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -24,8 +24,8 @@ class CustomPainterAnalogMeter extends CustomPainter {
 
     canvas.drawArc(
       Rect.fromCenter(center: center, width: 170, height: 170),
-      vmath.radians(155),
-      vmath.radians(230 * value),
+      vmath.radians(180),
+      vmath.radians((0.36 * meterValue) * value),
       false,
       Paint()
         ..style = PaintingStyle.stroke
